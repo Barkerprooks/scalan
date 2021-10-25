@@ -9,3 +9,6 @@ require root to use
 pip install -r require.txt
 python scanlan.py
 ```
+
+## changelog
+- added OSX support (./scanlan -i en1)
