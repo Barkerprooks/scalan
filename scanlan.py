@@ -13,7 +13,7 @@ BANNER = """   _____                 _               _   _
   ____) | (_| (_| | | | | |____ / ____ \| |\  |
  |_____/ \___\__,_|_| |_|______/_/    \_\_| \_|
 
->>> twitter: @parker_brooks -- v0.1.1"""
+>>> twitter: @parker_brooks -- v0.1.2"""
 
 HELP = """ScanLAN - A host discovery tool
 \t -i / --iface  ... network interface to use (eth0, wlan0, etc...)
@@ -45,7 +45,7 @@ def scan_lan(network, shuffle=False):
 def iface_up(name, mask, adapters=ifaddr.get_adapters()):
     iface = list(filter(lambda x: x.name == name, adapters)) 
     if not len(iface):
-        iface = list(filter(lambda x: x.name != "lo", adapters))[0]
+        iface = list(filter(lambda x: "lo" not in x.name, adapters))[0]
     else:
         iface = iface[0]
     addr = list(filter(lambda i: isinstance(i.ip, str), iface.ips))[0]

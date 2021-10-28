@@ -17,5 +17,11 @@ python3 -m pip install -r require.txt --user
 python3 scanlan.py
 ```
 
+# How to uninstall
+```
+sudo rm -rf /usr/local/src/scanlan
+sudo rm -rf /usr/local/bin/scanlan
+```
+
 ## changelog
-- added OSX support (use ./scanlan -i en1)
+- added OSX support for the install script
