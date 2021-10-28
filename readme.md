@@ -1,5 +1,6 @@
 # ScanLAN
-## host discovery tool written in python3
+## LAN host discovery tool written in python3
+### Named after a High School social studies teacher
 
 A simple local network host discovery tool that doesn't require root
 
