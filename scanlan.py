@@ -39,7 +39,8 @@ def scan_lan(network, shuffle=False):
         random.shuffle(network)
 
     for ip in network:
-        if host := try_host(ip.compressed):
+        host = try_host(ip.compressed)
+        if host: 
             yield host
 
 def iface_up(name, mask, adapters=ifaddr.get_adapters()):
@@ -77,7 +78,8 @@ def main(args) -> int:
     print(BANNER)
     total, found, length, clear = 0, 0, 0, ''
     print("[>] loading addresses from local network")
-    if scan_info := iface_up(name, mask):
+    scan_info = iface_up(name, mask)
+    if scan_info:
         iface, network = scan_info
         print("[>] scanning %s on network interface %s..." % (network, iface.name))
         for ip, host in scan_lan(network):

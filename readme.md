@@ -24,4 +24,5 @@ sudo rm -rf /usr/local/bin/scanlan
 ```
 
 ## changelog
+- made script compatible with versions of python < 3.8
 - added OSX support for the install script
