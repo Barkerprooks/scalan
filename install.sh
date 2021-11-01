@@ -8,7 +8,7 @@ if [ $(test -L $b_path) ]; then
 	rm -rf $b_path
 fi
 
-sudo -H python3 -m pip install -r ./require.txt --user
+python3 -m pip install -r ./require.txt --user
 
 echo "installing to $s_path"
 sudo mkdir -p $s_path
