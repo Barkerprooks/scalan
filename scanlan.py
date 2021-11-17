@@ -6,13 +6,7 @@ import os, sys
 import ipaddress
 
 BSP = "\033[%sD"
-BANNER = """   _____                 _               _   _ 
-  / ____|               | |        /\   | \ | |
- | (___   ___ __ _ _ __ | |       /  \  |  \| |
-  \___ \ / __/ _` | '_ \| |      / /\ \ | . ` |
-  ____) | (_| (_| | | | | |____ / ____ \| |\  |
- |_____/ \___\__,_|_| |_|______/_/    \_\_| \_|
-
+BANNER = """[ ScanLAN ]
 >>> twitter: @parker_brooks -- v0.1.2"""
 
 HELP = """ScanLAN - A host discovery tool
