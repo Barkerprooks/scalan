@@ -7,7 +7,7 @@ import ipaddress
 
 BSP = "\033[%sD"
 BANNER = """[ ScanLAN ]
->>> twitter: @parker_brooks -- v0.1.2"""
+>>> twitter: @parker_brooks -- v0.1.3"""
 
 HELP = """ScanLAN - A host discovery tool
 \t -i / --iface  ... network interface to use (eth0, wlan0, etc...)
