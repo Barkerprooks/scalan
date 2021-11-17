@@ -16,4 +16,5 @@ sudo cp scanlan.py $s_path
 sudo ln -sf $s_path/scanlan.py $b_path
 
 echo "install successful"
+echo "scanlan is now a command from /usr/local/bin/"
 echo "you can now delete this folder and everything in it"
