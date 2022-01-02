@@ -76,6 +76,8 @@ def main(args) -> int:
     print("[>] loading addresses from local network")
     this_host = socket.gethostname()
     scan_info = iface_up(name, mask)
+    if outf:
+        open(outf, "wt").close()
     if scan_info:
         iface, network = scan_info
         print("[>] scanning %s on network interface %s..." % (network, iface.name))
@@ -90,7 +92,7 @@ def main(args) -> int:
                     found += 1
                     output = "[!] found host: " + ip + ' ' + '-'*(16 - len(ip)) + '> ' + host
                     if host == this_host:
-                        output += " | THIS HOST"
+                        output += " (YOU)"
                     output += '\n'
                 print(clear + output, end='', flush=True)
                 length = len(output)

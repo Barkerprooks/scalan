@@ -18,6 +18,9 @@ doesn't want you looking???
 python3 -m pip install -r require.txt --user
 python3 scanlan.py
 ```
+
+![Demo Image](img/demo.png)
+
 # How to uninstall
 ```
 sudo rm -rf /usr/local/src/scanlan
