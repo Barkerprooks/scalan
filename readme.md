@@ -1,4 +1,4 @@
-# ScanLAN - v0.1.4
+# ScanLAN - v0.1.5
 ## LAN host discovery tool written in python3
 ### Named after a High School social studies teacher
 
