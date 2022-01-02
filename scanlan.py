@@ -7,13 +7,13 @@ import ipaddress
 
 BSP = "\033[%sD"
 BANNER = """[ ScanLAN ]
->>> twitter: @parker_brooks -- v0.1.3"""
+>>> twitter: @parker_brooks -- v0.1.5"""
 
 HELP = """ScanLAN - A host discovery tool
-\t -i / --iface  ... network interface to use (eth0, wlan0, etc...)
-\t -s / --subnet ... subnet part to scan (taken from iface by default)
-\t -o / --output ... write discovered hosts to a file
-"""
+\t -i, --iface  ... network interface to use (eth0, wlan0, etc...)
+\t -s, --subnet ... subnet part to scan (taken from iface by default)
+\t -o, --output ... write discovered hosts to a file
+\t -r, --random ... randomize discovery (massive slow down on large networks)"""
 
 # A slowish host discovery tool
 # uses the built-in socket function
@@ -53,7 +53,7 @@ def iface_up(name, mask, adapters=ifaddr.get_adapters()):
 
 def main(args) -> int:
 
-    name, outf, mask = None, None, None
+    name, outf, mask, random = None, None, None, False
     if len(args) > 1:
         if args[1] in ["-h", "--help"]:
             print(HELP)
@@ -65,6 +65,8 @@ def main(args) -> int:
                 outf = args[i + 1]
             if token in ["-s", "--subnet"] and i + 1 < len(args):
                 mask = int(args[i + 1])
+            if token in ["-r", "--random"]:
+                random = True
             if token in ["-v", "--version"]:
                 print(BANNER)
                 exit(0)
@@ -72,11 +74,12 @@ def main(args) -> int:
     print(BANNER)
     total, found, length, clear = 0, 0, 0, ''
     print("[>] loading addresses from local network")
+    this_host = socket.gethostname()
     scan_info = iface_up(name, mask)
     if scan_info:
         iface, network = scan_info
         print("[>] scanning %s on network interface %s..." % (network, iface.name))
-        for ip, host in scan_lan(network):
+        for ip, host in scan_lan(network, random):
             try:
                 clear = BSP % length + ' ' * length + BSP % length
                 total += 1
@@ -85,7 +88,10 @@ def main(args) -> int:
                     if outf:
                         print(ip + ':' + host, file=open(outf, "at+"))
                     found += 1
-                    output = "[!] found host: " + ip + ' ' + '-'*(16 - len(ip)) + '> ' + host + '\n'
+                    output = "[!] found host: " + ip + ' ' + '-'*(16 - len(ip)) + '> ' + host
+                    if host == this_host:
+                        output += " | THIS HOST"
+                    output += '\n'
                 print(clear + output, end='', flush=True)
                 length = len(output)
             except KeyboardInterrupt:
